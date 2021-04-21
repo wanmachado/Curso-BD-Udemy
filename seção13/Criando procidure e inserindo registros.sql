@@ -1,0 +1,55 @@
+
+/* PROCEDURES */
+
+
+/* CRIANDO BANCO PARA TREINAR AS PROCIDURES */
+CREATE DATABASE PROJETO;
+
+USE PROJETO;
+
+CREATE TABLE CURSOS(
+	IDCURSO INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30) NOT NULL,
+	HORAS INT(3) NOT NULL,
+	VALOR FLOAT(10,2) NOT NULL
+);
+
+
+/* INSERINDO INFORMAÇOES NA TABELA */
+INSERT INTO CURSOS VALUES(NULL,'JAVA',30,500.00);
+INSERT INTO CURSOS VALUES(NULL,'FUNDAMENTOS DE BANCOS DE DADOS',40,700.00);
+
+
+/* CRIANDO PROCIDURE */ 
+CREATE PROCEDURE CAD_CURSO(P_NOME VARCHAR(30),
+						   P_HORAS INT(30),
+						   P_PRECO  FLOAT(10,2))
+BEGIN
+	
+	INSERT INTO CURSOS VALUES(NULL,P_NOME,P_HORAS,P_PRECO);
+
+END
+#
+
+
+/* INSERINDO REGISTROS COM A PROCIDURE */
+
+CALL CAD_CURSO('BI SQL SERVER',35,3000.00);
+CALL CAD_CURSO('POWER BI',20,1000.00);
+CALL CAD_CURSO('TABLEAU',30,1200.00);
+
+
+/* VERIFICANDO SE OS VALORES FORAM INSERIDOS NA TABELA CURSOS */
+SELECT * FROM CURSOS;
+
++---------+--------------------------------+-------+---------+
+| IDCURSO | NOME                           | HORAS | VALOR   |
++---------+--------------------------------+-------+---------+
+|       1 | JAVA                           |    30 |  500.00 |
+|       2 | FUNDAMENTOS DE BANCOS DE DADOS |    40 |  700.00 |
+|       3 | BI SQL SERVER                  |    35 | 3000.00 |
+|       4 | POWER BI                       |    20 | 1000.00 |
+|       5 | TABLEAU                        |    30 | 1200.00 |
++---------+--------------------------------+-------+---------+
+5 rows in set (0.02 sec)
+
